@@ -1,0 +1,17 @@
+#+BEGIN_SRC plantuml :file seq.png
+CLI -> GPOM : list policies for `user_a`
+GPOM -> AD : find_gpo for `user_a`
+
+AD --> AD : find_gplinks
+AD --> AD : find_user `user_a`
+AD --> AD : get list of GPOs
+AD --> AD : append `Default Domain Policy` to GPOs list
+AD --> AD : filter GPOs by `Apply Policy` allowed for `user_a`
+AD --> GPOM : return GPO list
+
+GPOM -> AD : fetch GPO from Sysvol
+note left: for all GPO in a list
+#+END_SRC
+
+#+RESULTS:
+[[file:seq.png]]

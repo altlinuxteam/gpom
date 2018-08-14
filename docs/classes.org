@@ -1,0 +1,66 @@
+* Classes
+#+BEGIN_SRC plantuml :file classes.png
+
+class GPOM {
+  list_all :: [GPO]
+  list :: String -> Bool -> [GPO]
+}
+
+class GPO {
+  policies :: [Policy]
+}
+
+class Policy {
+  apply :: IO()
+}
+
+class LDAP {
+  search :: DN -> Expr -> Scope -> [Attr] -> Maybe [Result]
+}
+
+class SambaParams {
+  lp :: Params
+  creds :: Credentials
+}
+
+class SmbClient {
+  finddc :: Maybe Realm -> Maybe Flags -> DNSName
+  fetch :: UNC -> Dest -> IO ()
+}
+
+class Config {
+  get_params :: [ConfigParam]
+}
+
+GPOM -- Config
+GPOM -- SmbClient
+GPO -- Config
+GPO -- SmbClient
+
+GPOM ..> GPO
+GPOM ..> LDAP
+GPO ..> Policy
+GPO ..> LDAP
+Policy <|-- CSE
+Policy <|-- SecTmpl
+Policy <|-- Registry
+Policy ..> SmbClient
+
+SmbClient o-- SambaParams
+LDAP o-- SambaParams
+
+Wallpaper --|> Registry
+NetDrive --|> CSE
+NetPrinter --|> CSE
+EnvVars --|> CSE
+
+PasswordPolicy --|> SecTmpl
+#+END_SRC
+
+#+RESULTS:
+[[file:classes.png]]
+
+* Sequence
+#+BEGIN_SRC plantuml :file sequence.png
+
+#+END_SRC

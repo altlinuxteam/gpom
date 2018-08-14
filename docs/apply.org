@@ -1,0 +1,45 @@
+#+BEGIN_SRC plantuml :file apply-seq.png
+
+actor user
+user --> cli : policy apply --host
+cli --> cli : set hostname as\nan account name\n(e.g. CL0$)
+cli --> gpom : apply('CL0$')
+gpom --> AD : find_user('CL0$')
+AD --> gpom : CL0$ record
+gpom --> AD : get all CL0$ groups
+AD --> gpom : [SID]
+gpom --> AD : get GPLinks for CL0$
+AD --> gpom : [GPLink]
+
+gpom --> gpom : for each GPLink
+activate gpom
+gpom --> AD : get GPO from GPLink
+AD --> gpom : GPO record
+gpom --> AD : get ntSecuriryDescriptor for GPO
+AD --> gpom : ntSecurityDescriptor
+gpom --> gpom : check that the user allowed to apply this GPO
+alt allowed
+gpom --> gpom : add GPO to the result list
+else not allowed
+gpom --> gpom : skip this GPO
+end
+deactivate gpom
+
+gpom --> gpom : for each GPO in the list
+activate gpom
+gpom --> cacher : fetch GPO from Sysvol
+cacher --> gpom : done
+gpom --> gpom : parse policies in fetched GPO
+deactivate gpom
+
+gpom --> gpom : for each policy in the list
+activate gpom
+gpom --> cacher : fetch policy payload if needed
+cacher --> gpom : done
+gpom --> policy : apply
+
+deactivate gpom
+#+END_SRC
+
+#+RESULTS:
+[[file:apply-seq.png]]
