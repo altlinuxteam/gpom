@@ -6,7 +6,7 @@ Release: alt1
 Summary: Group Policy Object Manager
 License: Apache-2.0
 Group:   Other
-URL:     https://github.com/altlinuxteam/gpom3
+URL:     https://github.com/altlinuxteam/gpom
 
 Packager: Sergey Bubnov <omg@altlinux.org>
 
