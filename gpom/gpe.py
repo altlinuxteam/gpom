@@ -1,6 +1,6 @@
 from configparser import SafeConfigParser
-from cses.cse import load as cse_load
-from common import error, warning, info, debug
+from gpom.cses.cse import load as cse_load
+from gpom.common import error, warning, info, debug
 #import fnmatch
 #import importlib
 

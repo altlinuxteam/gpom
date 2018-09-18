@@ -1,7 +1,7 @@
 from samba.ndr import ndr_unpack, ndr_print
 from samba.dcerpc import security
 from maps.car import CAR
-from common import error, warning, info, debug
+from gpom.common import error, warning, info, debug
 
 
 class SecurityDescriptor(object):

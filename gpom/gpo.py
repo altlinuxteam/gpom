@@ -1,11 +1,11 @@
-from policy import Policy
-from common import error, warning, info, debug
+from gpom.policy import Policy
+from gpom.common import error, warning, info, debug
 import os
 from itertools import chain
 from configparser import SafeConfigParser
 import fnmatch
 import importlib
-from gpe import GPE
+from gpom.gpe import GPE
 
 
 polmap = {'Software/Microsoft/Windows/CurrentVersion/Policies/System':

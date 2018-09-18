@@ -1,4 +1,4 @@
-from common import error, warning, info, debug
+from gpom.common import error, warning, info, debug
 import os
 import json
 

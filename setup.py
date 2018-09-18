@@ -25,7 +25,7 @@ setup(
     include_package_data=True,
     entry_points={
         'console_scripts': [
-            'gpom=gpom.cli:main'
+            'gpom=gpom.cli.__main__:main'
         ],
     },
 #    test_suite="test",
