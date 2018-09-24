@@ -1,7 +1,7 @@
 
 Name:    gpom
 Version: 3.0.1
-Release: alt3%ubt
+Release: alt4%ubt
 
 Summary: Group Policy Object Manager
 License: Apache-2.0
@@ -20,8 +20,10 @@ BuildArch: noarch
 
 Source:  %name-%version.tar
 
+# Dueconfigparser from python-module-future not contains SafeConfigParser
+Requires: python-module-configparser
+
 #Requires: python-module-xmltodict
-#Requires: python-module-configparser
 #Requires: python-module-ldap
 #Requires: python-module-samba
 Requires: libsasl2-plugin-gssapi
@@ -51,6 +53,9 @@ mkdir -p %buildroot%_localstatedir/%name/{cache,state,cache/policies}
 %dir %_localstatedir/%name/cache/policies
 
 %changelog
+* Mon Sep 24 2018 Evgeny Sinelnikov <sin@altlinux.org> 3.0.1-alt4%ubt
+- Fix wrong distribution requires for configparser
+
 * Mon Sep 24 2018 Evgeny Sinelnikov <sin@altlinux.org> 3.0.1-alt3%ubt
 - Add default config to sysconfig directory
 - Build with ubt macros for backporting to stable branches
