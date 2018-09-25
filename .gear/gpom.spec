@@ -1,7 +1,7 @@
 
 Name:    gpom
 Version: 3.0.1
-Release: alt4%ubt
+Release: alt5%ubt
 
 Summary: Group Policy Object Manager
 License: Apache-2.0
@@ -53,6 +53,11 @@ mkdir -p %buildroot%_localstatedir/%name/{cache,state,cache/policies}
 %dir %_localstatedir/%name/cache/policies
 
 %changelog
+* Wed Sep 25 2018 Sergey Bubnov <omg@altlinux.org> 3.0.1-alt5%ubt
+- Fix state behaviour
+- Fix broken imports
+- Remove stupid hardcode
+
 * Mon Sep 24 2018 Evgeny Sinelnikov <sin@altlinux.org> 3.0.1-alt4%ubt
 - Fix wrong distribution requires for configparser
 
