@@ -1,7 +1,7 @@
-from gpom.common import error, warning, info, debug
+from gpom.common import config, error, warning, info, debug
 import os
 import json
-
+import shutil
 
 class State(object):
     def __init__(self, db_path=None, init=False, force=False):
@@ -90,3 +90,6 @@ class State(object):
 
     def __getitem__(self, key):
         return self.state[key]
+
+
+state = State(config['Default']['db_path'], init=False)

@@ -1,7 +1,7 @@
 import argparse
-from cli import Command
+from gpom.cli import Command
 from gpom.common import config, error, warning, info, debug #, SambaParams
-#from gpom.gpos import state
+from gpom.state import state
 
 
 class CMDImpl(Command):

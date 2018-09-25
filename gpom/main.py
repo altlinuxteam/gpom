@@ -18,7 +18,7 @@ from gpom.common import r2dn, dn_parent, parse_gplinks, parse_unc, config
 from gpom.common import error, warning, info, debug
 from gpom.user import User
 from gpom.secdesc import SecurityDescriptor
-from gpom.state import State
+from gpom.state import state
 from gpom.gpo import GPO
 
 
@@ -44,7 +44,7 @@ class GPOM(object):
 
 
     def __init_state(self):
-        self.state = State(config['Default']['db_path'], init=False)
+        self.state = state
 
 
     def __init_ldap(self):
