@@ -14,6 +14,9 @@ class State(object):
         self.state_file_path = "%s/%s" % (self.db_path, self.state_file)
 
         debug("db_path is %s" % self.db_path)
+        if not init:
+            self.safe_init()
+
         if not os.path.isdir(self.db_path) and not init:
             raise RuntimeError("Directory %s not found. Please init it first via `init` method" % db_path)
 
@@ -24,6 +27,19 @@ class State(object):
             self.init(force)
 
         self.load()
+
+
+    def safe_init(self):
+        p = self.db_path
+        if os.path.exists(p) and os.path.isdir(p):
+            if not os.listdir(p):
+                # exists but empty
+                debug("try to safe initialize state file")
+                self.init(force=True)
+        else:
+            # not exists
+            debug("try to safe initialize state directory")
+            self.init(force=False)
 
 
     def init(self, force=False):
