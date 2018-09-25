@@ -155,7 +155,7 @@ class GPOM(object):
         is_computer = 'computer' in res['objectClass']
 
         user = User(dn=user_dn, is_computer=is_computer)
-        res = subprocess.check_output(["wbinfo", "-n", "user_a"])
+        res = subprocess.check_output(["wbinfo", "-n", "'%s'" % name])
         user.sid = res.split(' ',1)[0]
         debug(user.sid)
         res = subprocess.check_output(["wbinfo", "--user-sids=%s" % user.sid])
