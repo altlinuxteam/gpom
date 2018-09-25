@@ -35,7 +35,9 @@ class CMDImpl(Command):
         if args.command == "apply":
             if args.host:
                 debug('use hostname as an account name')
-                args.account = '%s$' % os.getenv('HOSTNAME').split('.',1)[0]
+                acc = '%s$' % os.getenv('HOSTNAME').split('.',1)[0]
+            elif args.account:
+                acc = args.account[0] # due nargs is * this arg has list type
 
-            debug('apply policies for %s' % args.account)
-            self.gpom.apply(args.account)
+            debug('apply policies for %s' % acc)
+            self.gpom.apply(acc)
